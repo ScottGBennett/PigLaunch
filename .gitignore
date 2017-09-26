@@ -5,6 +5,9 @@ ehthumbs.db
 # Folder config file
 Desktop.ini
 
+#Unity Temp folder
+Temp/
+
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
