@@ -51,11 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\FantasyMonsters\Scripts\AnimationManager.cs" />
-     <Compile Include="Assets\FantasyMonsters\Scripts\MonsterCollection.cs" />
-     <Compile Include="Assets\FantasyMonsters\Scripts\MonsterCollectionRefresh.cs" />
-     <Compile Include="Assets\FantasyMonsters\Scripts\Screenshot.cs" />
-     <Compile Include="Assets\FantasyMonsters\Scripts\ScreenshotTransparent.cs" />
+     <Compile Include="Assets\Scripts\AnimationManager.cs" />
+     <Compile Include="Assets\Scripts\BackgroundScroll.cs" />
+     <Compile Include="Assets\Scripts\MonsterCollection.cs" />
+     <Compile Include="Assets\Scripts\MonsterCollectionRefresh.cs" />
+     <Compile Include="Assets\Scripts\PlayerControl.cs" />
+     <Compile Include="Assets\Scripts\Screenshot.cs" />
+     <Compile Include="Assets\Scripts\ScreenshotTransparent.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
