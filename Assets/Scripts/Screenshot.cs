@@ -16,7 +16,7 @@ namespace Assets.FantasyMonsters.Scripts
             {
                 var filename = Convert.ToString(DateTime.Now).Replace("/", "-").Replace(":", "-") + ".png";
 
-                ScreenCapture.CaptureScreenshot(filename, SuperSize);
+                Application.CaptureScreenshot(filename, SuperSize);
                 Debug.Log(filename);
             }
         }
