@@ -8,6 +8,9 @@ Desktop.ini
 #Unity Temp folder
 Temp/
 
+#Unity Library folder
+Library/
+
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 

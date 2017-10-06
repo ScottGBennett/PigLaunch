@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 71b7bbaddbb3e2042b9b103b9a0a427f
+guid: e3863a8f14df5184abc3bb982d01208c
 timeCreated: 1494918551
 licenseType: Store
 TextureImporter:
@@ -19,6 +19,8 @@ TextureImporter:
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -34,10 +36,13 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -128,6 +133,7 @@ TextureImporter:
       pivot: {x: 0.48141223, y: 0.23217547}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: DeadHead
@@ -141,6 +147,7 @@ TextureImporter:
       pivot: {x: 0.4800961, y: 0.23542984}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: Leg
@@ -154,6 +161,7 @@ TextureImporter:
       pivot: {x: 0.56125224, y: 0.70606476}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: Body
@@ -167,6 +175,7 @@ TextureImporter:
       pivot: {x: 0.5089843, y: 0.19798106}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: Arm
@@ -180,6 +189,7 @@ TextureImporter:
       pivot: {x: 0.27058235, y: 0.5992375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: Hit
@@ -193,6 +203,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: Feather
@@ -206,8 +217,10 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

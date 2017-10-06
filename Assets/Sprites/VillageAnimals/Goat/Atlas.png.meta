@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 90bc01a6d2d3d8c43916ea4d63865289
+guid: 8d2bfd8a35ff6a44e80d96eca8ee4675
 timeCreated: 1494918562
 licenseType: Store
 TextureImporter:
@@ -18,6 +18,8 @@ TextureImporter:
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -33,10 +35,13 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 16
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -127,6 +132,7 @@ TextureImporter:
       pivot: {x: 0.67298687, y: 0.33277133}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: DeadHead
@@ -140,6 +146,7 @@ TextureImporter:
       pivot: {x: 0.6779295, y: 0.32953322}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: Hit
@@ -153,6 +160,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: Body
@@ -166,6 +174,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: UpperLeg
@@ -179,6 +188,7 @@ TextureImporter:
       pivot: {x: 0.45721516, y: 0.74748045}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     - serializedVersion: 2
       name: LowerLeg
@@ -192,8 +202,10 @@ TextureImporter:
       pivot: {x: 0.49563915, y: 0.6826075}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: -1
     outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
