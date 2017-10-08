@@ -96,6 +96,7 @@
     <Compile Include="Assets\Scripts\Pickups.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerInflightController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PropelPig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

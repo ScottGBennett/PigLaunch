@@ -3,25 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundCollector : MonoBehaviour {
-    [SerializeField]
+
     GameObject backgroundSpawner;
     BackgroundSpawner bgSpawner;
+    Camera mainCamera;
+    GameObject cameraObject;
+    Renderer bgRenderer;
+    
 
     // Use this for initialization
     void Start ()
     {
+        bgRenderer = GetComponent<Renderer>();
+        cameraObject = GameObject.FindGameObjectWithTag("MainCamera");
+        mainCamera = cameraObject.GetComponent<Camera>();
+        backgroundSpawner = GameObject.FindGameObjectWithTag("BackgroundSpawner");
         bgSpawner = backgroundSpawner.GetComponent<BackgroundSpawner>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        Debug.Log("Trigger!");
         if (collision.gameObject.tag == "Background")
         {
-            var bgScroll = collision.gameObject.GetComponent<BackgroundScroll>();
-            bgScroll.StopMove();
-            collision.gameObject.SetActive(false);
-            bgSpawner.QueueBackground(collision.gameObject);
-            
+           bgSpawner.EnqueueBackground(collision.gameObject);
         }
     }
+
 }
