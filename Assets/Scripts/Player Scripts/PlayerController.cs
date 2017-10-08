@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public float maxStretch = 3.0f;
     public LineRenderer catapultLineFront;
     public LineRenderer catapultLineBack;
+    public float freq = 2.5f;
 
     private SpringJoint2D spring;
     private Transform catapult;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		if (spring != null)
         {
+            //if the pig has been launched, destroy the spring and calculate velocity
             if (!rb2d.isKinematic && prevVelocity.sqrMagnitude > rb2d.velocity.sqrMagnitude)
             {
                 Destroy(spring);
@@ -50,14 +52,16 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 
-    private void OnMouseDown()
+    public void Launch(float f)
     {
-        spring.enabled = false;
-        clickedOn = true;
-    }
+        //take user input and calculate spring frequency
+        float maxFreq = 2.5f;
+        float minFreq = 1.0f;
+        //Frequency calc: user input from 1-100% * (max frequency - min frequency) + min frequency
+        /*The idea is that the range is 1 - 2.5 for frequency. User input is from 1 - 100. Convert that to a 
+              percentage to determine where between 1 and 2.5 the launch should be*/
+        spring.frequency = ((f/100) * (maxFreq - minFreq)) + minFreq;
 
-    private void OnMouseUp()
-    {
         spring.enabled = true;
         rb2d.isKinematic = false;
         rb2d.angularDrag = 1f;
