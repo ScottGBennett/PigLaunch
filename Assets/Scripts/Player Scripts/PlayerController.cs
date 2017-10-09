@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public float maxStretch = 3.0f;
     public LineRenderer catapultLineFront;
@@ -26,18 +27,21 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start () 
+	{
 
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		if (spring != null)
         {
             //if the pig has been launched, destroy the spring and calculate velocity
             if (!rb2d.isKinematic && prevVelocity.sqrMagnitude > rb2d.velocity.sqrMagnitude)
             {
                 Destroy(spring);
+				spring = null;
                 rb2d.velocity = prevVelocity;
             }
 

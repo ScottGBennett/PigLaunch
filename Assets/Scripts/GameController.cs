@@ -19,13 +19,14 @@ public class GameController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 		if (!launched) //if the pig hasn't already been launched, change the power level
         {
             changePowerText();
         }
 
-        if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && !launched)
         {
             launched = true;
             pig.Launch((float)power);
