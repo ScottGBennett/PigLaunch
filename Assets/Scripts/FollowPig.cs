@@ -15,7 +15,6 @@ public class FollowPig : MonoBehaviour {
         //newPosition.x = Mathf.Clamp(newPosition.x, newPosition.x, farRight.position.x); //set the values
         newPosition.x = Mathf.Clamp(newPosition.x, farLeft.position.x, farRight.position.x);
         transform.position = newPosition;
-
         //move the left marker each frame 3 units behind the pig
         newPosition.x = pig.position.x - 3f; 
         farLeft.position = newPosition;
