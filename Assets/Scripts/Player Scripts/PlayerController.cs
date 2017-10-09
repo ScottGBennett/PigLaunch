@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
 {
 
     public float maxStretch = 3.0f;
+	public float freq = 2.5f;
+	public float attackForce = 1f;
     public LineRenderer catapultLineFront;
     public LineRenderer catapultLineBack;
-    public float freq = 2.5f;
+	public GameController gameController;
 
     private SpringJoint2D spring;
     private Transform catapult;
@@ -26,15 +28,16 @@ public class PlayerController : MonoBehaviour
         catapult = spring.connectedBody.transform;
     }
 
-    // Use this for initialization
-    void Start () 
-	{
-
-	}
-	
-	// Update is called once per frame
 	void Update () 
 	{
+		if (gameController.launched && rb2d.velocity != Vector2.zero) 
+		{
+			if (Input.GetButtonDown("Fire1")) 
+			{
+				BasicAttack ();
+			}	
+		}
+
 		if (spring != null)
         {
             //if the pig has been launched, destroy the spring and calculate velocity
@@ -54,6 +57,7 @@ public class PlayerController : MonoBehaviour
             catapultLineFront.enabled = false;
             catapultLineBack.enabled = false;
         }
+
 	}
 
     public void Launch(float f)
@@ -75,4 +79,9 @@ public class PlayerController : MonoBehaviour
         clickedOn = false;
     }
 
+	private void BasicAttack()
+	{
+		Debug.Log ("SUPER PIG ATTACK!");
+		rb2d.AddForce (Vector2.down * attackForce, ForceMode2D.Impulse);
+	}
 }

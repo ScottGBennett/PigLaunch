@@ -62,10 +62,10 @@
      <Compile Include="Assets\Scripts\FollowPig.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\Pickups.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\PlayerCollisions.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\PlayerInflightController.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\PropelPig.cs" />
-     <Compile Include="Assets\Scripts\PlayerCollisions.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
