@@ -35,6 +35,11 @@ public class BackgroundSpawner : MonoBehaviour
             bg.SetActive(false);
         }
 
+		//perform inital spawning
+		while (numBackgroundsSpawned < numBackgroundsToSpawn) 
+		{
+			SpawnBackground ();	
+		}
 
     }
     
@@ -54,7 +59,7 @@ public class BackgroundSpawner : MonoBehaviour
             //spawn ahead of last sprite by sprite size = 48.6f
             //y value is 1.11 to prevent vertical tearing - I have no idea why it is tearing though.
             float newXPosition = lastSpawnedBackground.position.x + 48.6f;
-            bg.transform.position = new Vector3(newXPosition, 1.11f, 0);
+            bg.transform.position = new Vector3(newXPosition, 0, 0);
             lastSpawnedBackground = bg.transform;
             bg.SetActive(true);
             numBackgroundsSpawned++;

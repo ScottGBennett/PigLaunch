@@ -22,7 +22,8 @@ public class PlayerCollisions : MonoBehaviour
 		else if (collision.gameObject.tag == "enemy")
 		{
 			transform.Rotate (0, 0, 0);
-			playerRigidBody.AddForce (Vector2.up * enemyBounceForce, ForceMode2D.Impulse);
+			Vector2 bounceVector = Vector2.up + Vector2.right;
+			playerRigidBody.AddForce (bounceVector * enemyBounceForce, ForceMode2D.Impulse);
 		}
 	}
 
