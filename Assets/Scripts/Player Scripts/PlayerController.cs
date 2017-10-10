@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
 	void Update () 
 	{
+
+		//If launch has happened, allow for pig attach
 		if (gameController.launched && rb2d.velocity != Vector2.zero) 
 		{
 			if (Input.GetButtonDown("Fire1")) 
@@ -57,6 +59,13 @@ public class PlayerController : MonoBehaviour
             catapultLineFront.enabled = false;
             catapultLineBack.enabled = false;
         }
+
+		//constrain player sprite to just above screen
+		Debug.Log("Transform.position.y = " + transform.position.y);
+		if (transform.position.y > 2.6f) 
+		{
+			transform.position = new Vector3(transform.position.x, 2.6f);
+		}
 
 	}
 
