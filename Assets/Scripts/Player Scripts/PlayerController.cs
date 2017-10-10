@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
         }
 
 		//constrain player sprite to just above screen
-		Debug.Log("Transform.position.y = " + transform.position.y);
 		if (transform.position.y > 2.6f) 
 		{
 			transform.position = new Vector3(transform.position.x, 2.6f);
