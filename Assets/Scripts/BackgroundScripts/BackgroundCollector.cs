@@ -17,7 +17,6 @@ public class BackgroundCollector : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        Debug.Log("Trigger!");
         if (collision.gameObject.tag == "Background")
         {
            bgSpawner.EnqueueBackground(collision.gameObject);

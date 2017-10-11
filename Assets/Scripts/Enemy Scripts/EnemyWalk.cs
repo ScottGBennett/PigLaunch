@@ -21,6 +21,8 @@ public class EnemyWalk : MonoBehaviour
 	void OnEnable()
 	{
 		isAlive = true;
+        animator = GetComponentInChildren<Animator>();
+        animator.Rebind();
 	}
     
     // Update is called once per frame
