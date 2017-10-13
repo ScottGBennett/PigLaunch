@@ -4,28 +4,44 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour 
 {
-	[SerializeField]
-	Rigidbody2D playerRigidBody;
-	[SerializeField]
-	float groundBounceForce = 1f;
-	[SerializeField]
-	float enemyBounceForce = 1f;
+    [SerializeField]
+    Rigidbody2D playerRigidBody;
 
-	void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.tag == "Ground") 
-		{
-			transform.Rotate (0, 0, 0);
-			playerRigidBody.AddForce  (Vector2.up * groundBounceForce, ForceMode2D.Impulse);
+    [SerializeField]
+    int maxBounces = 2;
 
-		}
-		else if (collision.gameObject.tag == "enemy")
-		{
-			transform.Rotate (0, 0, 0);
-			Vector2 bounceVector = Vector2.up + Vector2.right;
-			playerRigidBody.AddForce (bounceVector * enemyBounceForce, ForceMode2D.Impulse);
-		}
-	}
+    [SerializeField]
+    float groundBounceForce = 1f, enemyBounceForce = 1f;
+
+    int currentBounces = 0;
+
+    GameStateController gameStateController;
+
+    private void Start()
+    {
+        gameStateController = GameObject.FindGameObjectWithTag("GameStateController").GetComponent<GameStateController>();
+    }
+
+        void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground") 
+        {
+            if (currentBounces >= maxBounces)
+            {
+                playerRigidBody.velocity = Vector2.zero;
+            }
+
+            Vector2 bounceVector = Vector2.up + Vector2.right;
+            playerRigidBody.AddForce  (bounceVector * groundBounceForce, ForceMode2D.Impulse);
+            currentBounces++;
+        }
+        else if (collision.gameObject.tag == "enemy")
+        {
+            Vector2 bounceVector = Vector2.up + Vector2.right;
+            playerRigidBody.AddForce (bounceVector * enemyBounceForce, ForceMode2D.Impulse);
+            currentBounces = 0;
+        }
+    }
 
 
 }

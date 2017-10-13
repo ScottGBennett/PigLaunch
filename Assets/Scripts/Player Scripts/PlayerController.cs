@@ -6,12 +6,14 @@ public class PlayerController : MonoBehaviour
 {
 
     public float maxStretch = 3.0f;
-	public float freq = 2.5f;
-	public float attackForce = 1f;
+    public float freq = 2.5f;
+    public float attackForce = 1f;
+    public int maxNumAttacks = 2;
     public LineRenderer catapultLineFront;
     public LineRenderer catapultLineBack;
-	public GameController gameController;
+    public GameController gameController;
 
+    private int currentNumAttacks = 0;
     private SpringJoint2D spring;
     private Transform catapult;
     private Rigidbody2D rb2d;
@@ -20,6 +22,12 @@ public class PlayerController : MonoBehaviour
     private float circleRadius;
     private bool clickedOn;
     private Vector2 prevVelocity;
+    private GameStateController gameStateController;
+
+    private void Start()
+    {
+        gameStateController = GameObject.FindGameObjectWithTag("GameStateController").GetComponent<GameStateController>();
+    }
 
     void Awake()
     {
@@ -28,25 +36,26 @@ public class PlayerController : MonoBehaviour
         catapult = spring.connectedBody.transform;
     }
 
-	void Update () 
-	{
+    void Update () 
+    {
 
-		//If launch has happened, allow for pig attach
-		if (gameController.launched && rb2d.velocity != Vector2.zero) 
-		{
-			if (Input.GetButtonDown("Fire1")) 
-			{
-				BasicAttack ();
-			}	
-		}
+        //If launch has happened, allow for pig attack
+        if (gameController.launched && rb2d.velocity != Vector2.zero) 
+        {
+            if (Input.GetButtonDown("Fire1") && !gameStateController.gameOver && currentNumAttacks < maxNumAttacks) 
+            {
+                BasicAttack ();
+                currentNumAttacks++;
+            }	
+        }
 
-		if (spring != null)
+        if (spring != null)
         {
             //if the pig has been launched, destroy the spring and calculate velocity
             if (!rb2d.isKinematic && prevVelocity.sqrMagnitude > rb2d.velocity.sqrMagnitude)
             {
                 Destroy(spring);
-				spring = null;
+                spring = null;
                 rb2d.velocity = prevVelocity;
             }
 
@@ -60,13 +69,19 @@ public class PlayerController : MonoBehaviour
             catapultLineBack.enabled = false;
         }
 
-		//constrain player sprite to just above screen
-		if (transform.position.y > 2.6f) 
-		{
-			transform.position = new Vector3(transform.position.x, 2.6f);
-		}
+        //constrain player sprite to just above screen
+        if (transform.position.y > 2.6f) 
+        {
+            transform.position = new Vector3(transform.position.x, 2.6f);
+        }
 
-	}
+        //check for gameover condition
+        if (rb2d.velocity == Vector2.zero && gameController.launched)
+        {
+            gameStateController.gameOver = true;
+        }
+
+    }
 
     public void Launch(float f)
     {
@@ -87,9 +102,8 @@ public class PlayerController : MonoBehaviour
         clickedOn = false;
     }
 
-	private void BasicAttack()
-	{
-		Debug.Log ("SUPER PIG ATTACK!");
-		rb2d.AddForce (Vector2.down * attackForce, ForceMode2D.Impulse);
-	}
+    private void BasicAttack()
+    {
+        rb2d.AddForce (Vector2.down * attackForce, ForceMode2D.Impulse);
+    }
 }
