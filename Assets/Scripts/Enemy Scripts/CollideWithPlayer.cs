@@ -21,7 +21,7 @@ public class CollideWithPlayer : MonoBehaviour
         {
             Animator animator = gameObject.GetComponentInChildren<Animator>();
             EnemyWalk walkScript = GetComponent<EnemyWalk>();
-			walkScript.isAlive = false;
+            walkScript.isAlive = false;
             animator.Play("Die");
             StartCoroutine("FadeAfterDie");
         }
