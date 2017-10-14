@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour {
+public class LaunchController : MonoBehaviour {
 
-    public static GameController instance;
+    public static LaunchController instance;
     public Text powerText;
     public bool launched = false;
     public PlayerController pig;

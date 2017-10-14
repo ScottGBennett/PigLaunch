@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public int maxNumAttacks = 2;
     public LineRenderer catapultLineFront;
     public LineRenderer catapultLineBack;
-    public GameController gameController;
+    public LaunchController gameController;
 
     private int currentNumAttacks = 0;
     private SpringJoint2D spring;

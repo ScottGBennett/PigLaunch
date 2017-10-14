@@ -94,8 +94,8 @@
     <Compile Include="Assets\Scripts\Enemy Scripts\EnemySpawner\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\EnemyWalk.cs" />
     <Compile Include="Assets\Scripts\FollowPig.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GameStateController.cs" />
+    <Compile Include="Assets\Scripts\LaunchController.cs" />
     <Compile Include="Assets\Scripts\Pickups.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerCollisions.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
