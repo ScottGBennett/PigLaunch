@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
     [SerializeField]
-    GameObject enemyPrefab1, enemyPrefab2;
+    GameObject enemyPrefab1, enemyPrefab2, enemy1Animation, enemy2Animation;
     [SerializeField]
     int numSpawns = 10;
     [SerializeField]

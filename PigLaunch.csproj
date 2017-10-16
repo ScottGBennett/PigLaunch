@@ -85,17 +85,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BackgroundScripts\BackgroundCollector.cs" />
-    <Compile Include="Assets\Scripts\BackgroundScripts\BackgroundScroll.cs" />
     <Compile Include="Assets\Scripts\BackgroundScripts\BackgroundSpawner.cs" />
-    <Compile Include="Assets\Scripts\BackgroundScripts\BackgroundTiler.cs" />
+    <Compile Include="Assets\Scripts\Controller Scripts\GameStateController.cs" />
+    <Compile Include="Assets\Scripts\Controller Scripts\LaunchController.cs" />
+    <Compile Include="Assets\Scripts\Controller Scripts\UIController.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\CollideWithPlayer.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\EnemySpawner\EnemyCollector.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\EnemySpawner\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\EnemyWalk.cs" />
     <Compile Include="Assets\Scripts\FollowPig.cs" />
     <Compile Include="Assets\Scripts\Pickups.cs" />
+    <Compile Include="Assets\Scripts\PickupSpawner.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerCollisions.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerInflightController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PropelPig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

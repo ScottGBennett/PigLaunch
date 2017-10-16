@@ -51,13 +51,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\AnimationManager.cs" />
-     <Compile Include="Assets\Scripts\BackgroundScroll.cs" />
-     <Compile Include="Assets\Scripts\MonsterCollection.cs" />
-     <Compile Include="Assets\Scripts\MonsterCollectionRefresh.cs" />
-     <Compile Include="Assets\Scripts\PlayerControl.cs" />
-     <Compile Include="Assets\Scripts\Screenshot.cs" />
-     <Compile Include="Assets\Scripts\ScreenshotTransparent.cs" />
+     <Compile Include="Assets\Scripts\Background Scripts\BackgroundCollector.cs" />
+     <Compile Include="Assets\Scripts\Background Scripts\BackgroundScroll.cs" />
+     <Compile Include="Assets\Scripts\Background Scripts\BackgroundSpawner.cs" />
+     <Compile Include="Assets\Scripts\Background Scripts\BackgroundTiler.cs" />
+     <Compile Include="Assets\Scripts\Controller Scripts\GameStateController.cs" />
+     <Compile Include="Assets\Scripts\Controller Scripts\LaunchController.cs" />
+     <Compile Include="Assets\Scripts\Controller Scripts\UIController.cs" />
+     <Compile Include="Assets\Scripts\Enemy Scripts\CollideWithPlayer.cs" />
+     <Compile Include="Assets\Scripts\Enemy Scripts\EnemySpawner\EnemyCollector.cs" />
+     <Compile Include="Assets\Scripts\Enemy Scripts\EnemySpawner\EnemySpawner.cs" />
+     <Compile Include="Assets\Scripts\Enemy Scripts\EnemyWalk.cs" />
+     <Compile Include="Assets\Scripts\FollowPig.cs" />
+     <Compile Include="Assets\Scripts\PickupSpawner.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\PlayerCollisions.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\PlayerInflightController.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\PropelPig.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>

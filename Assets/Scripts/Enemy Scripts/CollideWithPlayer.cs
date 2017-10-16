@@ -6,20 +6,22 @@ public class CollideWithPlayer : MonoBehaviour
 {
     GameObject spawnerObject;
     EnemySpawner spawnerScript;
+    GameStateController gameStateController;
 
     private void Start()
     {
+        gameStateController = GameObject.FindGameObjectWithTag("GameStateController").GetComponent<GameStateController>();
         spawnerObject = GameObject.FindGameObjectWithTag("EnemySpawner");
         spawnerScript = spawnerObject.GetComponent<EnemySpawner>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && !gameStateController.gameOver)
         {
             Animator animator = gameObject.GetComponentInChildren<Animator>();
             EnemyWalk walkScript = GetComponent<EnemyWalk>();
-            walkScript.SetIsAlive(false);
+            walkScript.isAlive = false;
             animator.Play("Die");
             StartCoroutine("FadeAfterDie");
         }
