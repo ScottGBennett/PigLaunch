@@ -5,37 +5,73 @@ using UnityEngine;
 public class BackgroundSpawner : MonoBehaviour
 {
     [SerializeField]
-    List<GameObject> backgroundsToSpawn;
+    GameObject backgroundToSpawn;
+
     [SerializeField]
-    int backgroundBuffer = 1;
+    int numBackgroundsToSpawn;
+
+    [SerializeField]
+    int backgroundQueueBuffer;
+
+    [SerializeField]
+    Transform lastSpawnedBackground;
+
     Queue<GameObject> backgroundQueue;
+
+    int numBackgroundsSpawned;
 
     void Start ()
     {
         backgroundQueue = new Queue<GameObject>();
-        foreach (var bg in backgroundsToSpawn)
+
+        //inital number of BGs placed in the scene
+        numBackgroundsSpawned = 4;
+
+        //fill background queue with preinstantiated backgrounds
+        while (backgroundQueue.Count < backgroundQueueBuffer)
         {
-            for (int i = 0; i < backgroundBuffer; i++)
-            {
-                GameObject newBackground = (GameObject)Instantiate(bg);
-                newBackground.SetActive(false);
-                backgroundQueue.Enqueue(newBackground);
-            }
+            var bg = (GameObject)Instantiate(backgroundToSpawn);
+            backgroundQueue.Enqueue(bg);
+            bg.SetActive(false);
         }
+
+		//perform inital spawning
+		while (numBackgroundsSpawned < numBackgroundsToSpawn) 
+		{
+			SpawnBackground ();	
+		}
+
     }
     
     void Update ()
     {
-        while (backgroundQueue.Count != 0)
+        if (numBackgroundsSpawned < numBackgroundsToSpawn)
         {
-            var backgroundToSpawn = backgroundQueue.Dequeue();
-            backgroundToSpawn.transform.position = new Vector3(transform.position.x, transform.position.y);
-            backgroundToSpawn.SetActive(true);
+            SpawnBackground();
         }
     }
 
-    public void QueueBackground(GameObject background)
+    void SpawnBackground ()
+    {
+        if (backgroundQueue.Count > 0)
+        {
+            GameObject bg = backgroundQueue.Dequeue();
+            //spawn ahead of last sprite by sprite size = 48.6f
+            //y value is 1.11 to prevent vertical tearing - I have no idea why it is tearing though.
+            float newXPosition = lastSpawnedBackground.position.x + 48.6f;
+            bg.transform.position = new Vector3(newXPosition, 0, 0);
+            lastSpawnedBackground = bg.transform;
+            bg.SetActive(true);
+            numBackgroundsSpawned++;
+        }
+    }
+
+    public void EnqueueBackground(GameObject background)
     {
         backgroundQueue.Enqueue(background);
+        numBackgroundsSpawned--;
+        background.SetActive(false);
     }
+
+
 }
