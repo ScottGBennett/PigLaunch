@@ -11,10 +11,12 @@ public class GameStateController : MonoBehaviour
     [SerializeField]
     GameObject summaryScreen;
 
+    [SerializeField]
+    HighScoreManager highScoreManager;
 
-    public Text scoreText, timeText, enemySquashText, CoinsEarnedText;
+    public Text uiCoinsEarnedText, timeText, enemySquashText, sumScreenCoinsEarnedText;
 
-    private int playerScore = 0, enemiesSquashed = 0;
+    private int coinsEarned = 0, enemiesSquashed = 0;
     private float time;
 
     // Use this for initialization
@@ -33,7 +35,8 @@ public class GameStateController : MonoBehaviour
             Time.timeScale = 0;
             summaryScreen.SetActive(true);
             enemySquashText.text = "Enemies Squashed: " + enemiesSquashed;
-            CoinsEarnedText.text = "Coins Earned: " + playerScore;
+            sumScreenCoinsEarnedText.text = "Coins Earned: " + coinsEarned;
+            highScoreManager.CheckScore(enemiesSquashed, coinsEarned, time);
             
         }
 
@@ -43,8 +46,8 @@ public class GameStateController : MonoBehaviour
     //function to update the player's score
     public void incrementScore()
     {
-        playerScore++;
-        scoreText.text = "Pickups collected: " + playerScore;
+        coinsEarned++;
+        uiCoinsEarnedText.text = "Pickups collected: " + coinsEarned;
     }
 
     //function to update the enemy squashed count

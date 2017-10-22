@@ -87,6 +87,8 @@
     <Compile Include="Assets\Scripts\BackgroundScripts\BackgroundCollector.cs" />
     <Compile Include="Assets\Scripts\BackgroundScripts\BackgroundSpawner.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\GameStateController.cs" />
+    <Compile Include="Assets\Scripts\Controller Scripts\HighScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Controller Scripts\HighScoreUIController.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\LaunchController.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\UIController.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\CollideWithPlayer.cs" />

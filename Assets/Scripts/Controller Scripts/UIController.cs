@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
 
     public void LoadHighscore()
     {
-        SceneManager.LoadScene("HighScore");
+        SceneManager.LoadScene("HighScoreMenu");
     }
 
     public void LoadMainMenu()
