@@ -36,9 +36,9 @@ public class EnemySpawner : MonoBehaviour {
         shouldSpawn = true;
         StartCoroutine("Spawn");
     }
-	
-	
-	void Update ()
+    
+    
+    void Update ()
     {
 
     }
