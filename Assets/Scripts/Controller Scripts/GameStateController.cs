@@ -11,12 +11,14 @@ public class GameStateController : MonoBehaviour
     [SerializeField]
     GameObject summaryScreen;
 
+    [SerializeField]
+    HighScoreManager highScoreManager;
 
-    public Text scoreText, timeText, enemySquashText, CoinsEarnedText;
+    public Text uiCoinsEarnedText, timeText, enemySquashText, sumScreenCoinsEarnedText;
 
-    private int playerScore = 0, enemiesSquashed = 0;
+    private int coinsEarned = 0, enemiesSquashed = 0;
     private float time;
-
+    bool endRoundSceneDisplayed = false;
     // Use this for initialization
     void Start ()
     {
@@ -28,13 +30,28 @@ public class GameStateController : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (gameOver)
+        
+        if (gameOver && !endRoundSceneDisplayed)
         {
             Time.timeScale = 0;
             summaryScreen.SetActive(true);
             enemySquashText.text = "Enemies Squashed: " + enemiesSquashed;
-            CoinsEarnedText.text = "Coins Earned: " + playerScore;
-            
+            sumScreenCoinsEarnedText.text = "Coins Earned: " + coinsEarned;
+            //check if current score beats highest score
+            highScoreManager.CheckScore(enemiesSquashed, coinsEarned, time);
+            //save number of coins earned to permanent score record
+            if (PlayerPrefs.HasKey("Coins"))
+            {
+                int currentCoins = PlayerPrefs.GetInt("Coins");
+                coinsEarned += currentCoins;
+                PlayerPrefs.SetInt("Coins", coinsEarned);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("Coins", coinsEarned);
+            }
+
+            endRoundSceneDisplayed = true;
         }
 
         timeUpdate();
@@ -43,8 +60,8 @@ public class GameStateController : MonoBehaviour
     //function to update the player's score
     public void incrementScore()
     {
-        playerScore++;
-        scoreText.text = "Pickups collected: " + playerScore;
+        coinsEarned++;
+        uiCoinsEarnedText.text = "Coins collected: " + coinsEarned;
     }
 
     //function to update the enemy squashed count

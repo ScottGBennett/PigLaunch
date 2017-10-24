@@ -7,9 +7,9 @@ public class FollowPig : MonoBehaviour {
     public Transform pig;
     public Transform farLeft;
     public Transform farRight;
-	
-	// Update is called once per frame
-	void Update () {
+    
+    // Update is called once per frame
+    void Update () {
         Vector3 newPosition = transform.position;
         newPosition.x = pig.position.x;
         //newPosition.x = Mathf.Clamp(newPosition.x, newPosition.x, farRight.position.x); //set the values
@@ -22,5 +22,5 @@ public class FollowPig : MonoBehaviour {
         //move the right marker each frame 7 units in front of the pig
         newPosition.x = pig.position.x + 7f;
         farRight.position = newPosition;
-	}
+    }
 }
