@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class LaunchController : MonoBehaviour {
 
     public static LaunchController instance;
-    public Text powerText;
+    public Image fullShader;
     public PlayerController pig;
+    public GameObject powerBar;
 
     [HideInInspector]
     public bool launched = false;
@@ -19,7 +20,7 @@ public class LaunchController : MonoBehaviour {
     void Start () 
     {
         launched = false;
-        powerText.enabled = true;
+        powerBar.SetActive(true);
     }
     
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class LaunchController : MonoBehaviour {
         {
             launched = true;
             pig.Launch((float)power);
-            powerText.enabled = false;
+            powerBar.SetActive(false);
         }
     }
 
@@ -45,13 +46,13 @@ public class LaunchController : MonoBehaviour {
             if (power <= 98) //98 or less and we just need to increment then update the UI text
             {
                 power++;
-                powerText.text = "Input Power: " + power.ToString();
+                fullShader.transform.localScale = new Vector3(((float)power / 100f), 1, 1);
             }
             else //once we hit 99, change the movePowerUp variable so this block is skipped next frame
             {
                 movePowerUp = false;
                 power++;
-                powerText.text = "Input Power: " + power.ToString();
+                fullShader.transform.localScale = new Vector3(((float)power / 100f), 1, 1);
             }
         }
         else //if the movePowerUp flag is false, decrease the power number
@@ -59,13 +60,13 @@ public class LaunchController : MonoBehaviour {
             if (power > 1) //2 or greater and we just need to decrement then update the UI text 
             {
                 power--;
-                powerText.text = "Input Power: " + power.ToString();
+                fullShader.transform.localScale = new Vector3(((float)power / 100f), 1, 1);
             }
             else //once we hit 1, change the movePowerUp variable so the above block is executed next frame
             {
                 movePowerUp = true;
                 power--;
-                powerText.text = "Input Power: " + power.ToString();
+                fullShader.transform.localScale = new Vector3(((float)power / 100f), 1, 1);
             }
         }
     } 
