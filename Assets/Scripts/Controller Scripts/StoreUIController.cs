@@ -67,7 +67,9 @@ public class StoreUIController : MonoBehaviour
         {
             levelButtonText.text = "Unlock " + storeState.nextLevel + ": 500 Coins";
         }
-        
+
+        PlayerPrefs.SetString("StoreState", JsonUtility.ToJson(storeState));
+
     }
 
     void InitializeStore()
@@ -143,7 +145,7 @@ public class StoreUIController : MonoBehaviour
 }
 
 
-//custom class to hold information about the state of the store. An instance of this is serialized to playerprefs 
+//custom class to hold information about the state of the store. An instance of this is serialized to playerprefs as "StoreState"
 class StoreState
 {
     public string nextLevel;
