@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CollideWithPlayer : MonoBehaviour
 {
+    [SerializeField]
+    AudioController audioController;
     GameObject spawnerObject;
     EnemySpawner spawnerScript;
     GameStateController gameStateController;

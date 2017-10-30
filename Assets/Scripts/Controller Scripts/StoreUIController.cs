@@ -13,8 +13,10 @@ public class StoreUIController : MonoBehaviour
     [SerializeField]
     GameObject levelButton;
 
+    public Transform groundButton, enemyButton, numAttackButton;
+
     [SerializeField]
-    int costMultiplier = 100;
+    int costMultiplier = 2;
 
     [SerializeField]
     int numCoins;
@@ -32,6 +34,7 @@ public class StoreUIController : MonoBehaviour
         {
             numCoins = 0;
         }
+
         if (PlayerPrefs.HasKey("StoreState"))
         {
             //get current state from player prefs
@@ -49,15 +52,45 @@ public class StoreUIController : MonoBehaviour
     {
 
         //update text on store page with storeState info
-        numCoinsText.text = "Current Amount off Coins: " + numCoins;
+        numCoinsText.text = "Current Amount of Coins: " + numCoins;
         groundForceText.text = storeState.groundForceLevel.ToString() + " Pig Newtons";
         enemyForceText.text = storeState.enemyForceLevel.ToString() + " Pig Newtons";
         numAttacksText.text = storeState.numAttacksLevel.ToString();
 
+        /*********************************************/
+        /*             Button Text Section           */
+        /*********************************************/
         //upgrades cost (current level * cost multiplier coins)
-        groundButtonText.text = "Upgrade: " + (storeState.groundForceLevel * costMultiplier).ToString() + " Coins";
-        enemyButtonText.text = "Upgrade: " + (storeState.enemyForceLevel * costMultiplier).ToString() + " Coins";
-        numAttackButtonText.text = "Upgrade: " + (storeState.numAttacksLevel * costMultiplier).ToString() + " Coins";
+        if (storeState.groundForceLevel < 3) //if this element is upgradable, write its cost
+        {
+            groundButtonText.text = "Upgrade: " + (storeState.groundForceLevel * costMultiplier).ToString() + " Coins";
+        }
+        else //if the element is not upgradable, state that it's at max level and make button inactive
+        {
+            groundButtonText.text = "Max Level";
+            groundButton.GetComponent<Button>().interactable = false;
+        }
+
+        if (storeState.enemyForceLevel < 3)
+        {
+            enemyButtonText.text = "Upgrade: " + (storeState.enemyForceLevel * costMultiplier).ToString() + " Coins";
+        }
+        else
+        {
+            enemyButtonText.text = "Max Level";
+            enemyButton.GetComponent<Button>().interactable = false;
+        }
+        
+        if (storeState.numAttacksLevel < 5)
+        {
+            numAttackButtonText.text = "Upgrade: " + (storeState.numAttacksLevel * costMultiplier).ToString() + " Coins";
+        }
+        else
+        {
+            numAttackButtonText.text = "Max Level";
+            numAttackButton.GetComponent<Button>().interactable = false;
+        }
+        /***********************************************/
 
         if (storeState.nextLevel == "NONE")
         {
@@ -65,7 +98,7 @@ public class StoreUIController : MonoBehaviour
         }
         else
         {
-            levelButtonText.text = "Unlock " + storeState.nextLevel + ": 500 Coins";
+            levelButtonText.text = "Unlock " + storeState.nextLevel + ": 5 Coins";
         }
 
         PlayerPrefs.SetString("StoreState", JsonUtility.ToJson(storeState));
@@ -84,6 +117,7 @@ public class StoreUIController : MonoBehaviour
         if (storeState.groundForceLevel * costMultiplier <= numCoins)
         {
             numCoins -= storeState.groundForceLevel * costMultiplier;
+            PlayerPrefs.SetInt("Coins", numCoins);
             storeState.groundForceLevel++;
             UpdateStore();
         }
@@ -93,6 +127,7 @@ public class StoreUIController : MonoBehaviour
         if (storeState.enemyForceLevel * costMultiplier <= numCoins)
         {
             numCoins -= storeState.enemyForceLevel * costMultiplier;
+            PlayerPrefs.SetInt("Coins", numCoins);
             storeState.enemyForceLevel++;
             UpdateStore();
         }
@@ -102,31 +137,36 @@ public class StoreUIController : MonoBehaviour
         if (storeState.numAttacksLevel * costMultiplier <= numCoins)
         {
             numCoins -= storeState.numAttacksLevel * costMultiplier;
+            PlayerPrefs.SetInt("Coins", numCoins);
             storeState.numAttacksLevel++;
             UpdateStore();
         }
     }
     public void UnlockLevel()
     {
-        if (numCoins >= 500)
+        if (numCoins >= 5)
         {
             switch (storeState.nextLevel)
             {
                 case "Forest":
                     storeState.nextLevel = "Marsh";
-                    numCoins -= 500;
+                    numCoins -= 5;
+                    PlayerPrefs.SetInt("Coins", numCoins);
                     break;
                 case "Marsh":
                     storeState.nextLevel = "Castle";
-                    numCoins -= 500;
+                    numCoins -= 5;
+                    PlayerPrefs.SetInt("Coins", numCoins);
                     break;
                 case "Castle":
                     storeState.nextLevel = "Mountains";
-                    numCoins -= 500;
+                    numCoins -= 5;
+                    PlayerPrefs.SetInt("Coins", numCoins);
                     break;
                 case "Mountains":
                     storeState.nextLevel = "NONE";
-                    numCoins -= 500;
+                    numCoins -= 5;
+                    PlayerPrefs.SetInt("Coins", numCoins);
                     levelButton.SetActive(false);
                     break;
                 default:

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerCollisions : MonoBehaviour 
 {
@@ -13,27 +15,42 @@ public class PlayerCollisions : MonoBehaviour
     [SerializeField]
     float groundBounceForce = 1f, enemyBounceForce = 1f;
 
+    [SerializeField]
+    AudioController audioController;
+
     int currentBounces = 0;
+
+    StoreState storeState;
 
     GameStateController gameStateController;
 
     private void Start()
     {
         gameStateController = GameObject.FindGameObjectWithTag("GameStateController").GetComponent<GameStateController>();
+
+        //get current state from player prefs
+        string storeStateString = PlayerPrefs.GetString("StoreState");
+        storeState = JsonUtility.FromJson<StoreState>(storeStateString);
+
+        //get values for ground bounce force, enemy bounce force, and number of attacks
+        groundBounceForce *= storeState.groundForceLevel;
+        enemyBounceForce *= storeState.enemyForceLevel;
     }
 
-        void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground")) 
+        if (collision.gameObject.CompareTag("Background"))
         {
+            /*
             if (currentBounces >= maxBounces)
             {
                 playerRigidBody.velocity = Vector2.zero;
-            }
+            }*/
 
             Vector2 bounceVector = Vector2.up + Vector2.right;
             playerRigidBody.AddForce  (bounceVector * groundBounceForce, ForceMode2D.Impulse);
             currentBounces++;
+            audioController.PlayGroundBounceSound();
         }
         else if (collision.gameObject.CompareTag("enemy"))
         {
@@ -41,6 +58,7 @@ public class PlayerCollisions : MonoBehaviour
             playerRigidBody.AddForce (bounceVector * enemyBounceForce, ForceMode2D.Impulse);
             currentBounces = 0;
 			gameStateController.incrementEnemyCount ();
+            audioController.PlayEnemy1Sound();
         }
     }
 
@@ -50,6 +68,7 @@ public class PlayerCollisions : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             gameStateController.incrementScore();
+            audioController.PlayCoinSound();
         }
     }
 

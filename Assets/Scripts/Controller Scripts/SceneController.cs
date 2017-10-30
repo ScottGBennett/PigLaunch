@@ -24,6 +24,11 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("ShopMenu");
     }
 
+    public void LoadOptionsMenu()
+    {
+        SceneManager.LoadScene("OptionsMenu");
+    }
+
     public void ClearAllData()
     {
         PlayerPrefs.DeleteAll();

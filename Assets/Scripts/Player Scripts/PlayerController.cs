@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public LineRenderer catapultLineFront;
     public LineRenderer catapultLineBack;
     public LaunchController gameController;
+    public AudioController audioController;
 
     private int currentNumAttacks = 0;
     private SpringJoint2D spring;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool clickedOn;
     private Vector2 prevVelocity;
     private GameStateController gameStateController;
+    StoreState storeState;
 
     private void Start()
     {
@@ -34,6 +38,12 @@ public class PlayerController : MonoBehaviour
         spring = GetComponent<SpringJoint2D>();
         rb2d = GetComponent<Rigidbody2D>();
         catapult = spring.connectedBody.transform;
+
+        //get current state from player prefs
+        string storeStateString = PlayerPrefs.GetString("StoreState");
+        storeState = JsonUtility.FromJson<StoreState>(storeStateString);
+
+        maxNumAttacks = storeState.numAttacksLevel; //set the number of attacks
     }
 
     void Update () 
@@ -105,5 +115,6 @@ public class PlayerController : MonoBehaviour
     private void BasicAttack()
     {
         rb2d.AddForce (Vector2.down * attackForce, ForceMode2D.Impulse);
+        audioController.PlayPigSound();
     }
 }

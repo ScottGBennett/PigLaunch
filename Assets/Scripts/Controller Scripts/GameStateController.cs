@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameStateController : MonoBehaviour
 {
     [HideInInspector]
@@ -13,6 +14,7 @@ public class GameStateController : MonoBehaviour
 
     [SerializeField]
     HighScoreManager highScoreManager;
+
 
     public Text uiCoinsEarnedText, timeText, enemySquashText, sumScreenCoinsEarnedText;
 
@@ -74,9 +76,9 @@ public class GameStateController : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        var minutes = time / 60;
-        var seconds = time % 60;
-        var fraction = (time * 100) % 100;
+        var minutes = Mathf.Floor(time / 60f);
+        var seconds = time % 60f;
+        var fraction = (time * 100f) % 100f;
 
         timeText.text = string.Format("Time Elapsed: {0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
     }
