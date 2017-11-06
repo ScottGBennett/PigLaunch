@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -192,6 +193,7 @@ class StoreState
     public int groundForceLevel;
     public int enemyForceLevel;
     public int numAttacksLevel;
+    public Dictionary<string, bool> levelsUnlocked;
 
     public StoreState(string levelTitle, int groundForce, int enemyForce, int numAttack)
     {
@@ -199,5 +201,6 @@ class StoreState
         groundForceLevel = groundForce;
         enemyForceLevel = enemyForce;
         numAttacksLevel = numAttack;
+
     }
 }

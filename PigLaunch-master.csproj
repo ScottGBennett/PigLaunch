@@ -80,10 +80,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BackgroundScripts\BackgroundCollector.cs" />
     <Compile Include="Assets\Scripts\BackgroundScripts\BackgroundSpawner.cs" />
+    <Compile Include="Assets\Scripts\Controller Scripts\AudioController.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\GameStateController.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\HighScoreManager.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\HighScoreUIController.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\LaunchController.cs" />
+    <Compile Include="Assets\Scripts\Controller Scripts\OptionsUIController.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\SceneController.cs" />
     <Compile Include="Assets\Scripts\Controller Scripts\StoreUIController.cs" />
     <Compile Include="Assets\Scripts\Enemy Scripts\CollideWithPlayer.cs" />
