@@ -76,8 +76,8 @@ public class GameStateController : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        var minutes = Mathf.Floor(time / 60f);
-        var seconds = time % 60f;
+        var minutes = Mathf.Floor(time / 59f);
+        var seconds = time % 59f;
         var fraction = (time * 100f) % 100f;
 
         timeText.text = string.Format("Time Elapsed: {0:00}:{1:00}:{2:00}", minutes, seconds, fraction);

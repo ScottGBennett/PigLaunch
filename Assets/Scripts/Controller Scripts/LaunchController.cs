@@ -34,6 +34,7 @@ public class LaunchController : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && !launched)
         {
             launched = true;
+            Debug.Log("Power: " + power);
             pig.Launch((float)power);
             powerBar.SetActive(false);
         }

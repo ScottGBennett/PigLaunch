@@ -71,4 +71,9 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene("Mountains");
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
