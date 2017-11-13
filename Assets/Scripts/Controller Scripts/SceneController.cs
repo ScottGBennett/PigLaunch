@@ -42,6 +42,11 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("OptionsMenu");
     }
 
+	public void LoadLearnToPlay()
+	{
+		SceneManager.LoadScene ("LearnToPlay");
+	}
+
     public void ClearAllData()
     {
         PlayerPrefs.DeleteAll();
