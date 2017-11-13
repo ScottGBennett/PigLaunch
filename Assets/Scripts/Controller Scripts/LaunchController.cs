@@ -18,7 +18,8 @@ public class LaunchController : MonoBehaviour {
     EnemySpawner enemySpawner;
     [SerializeField]
     PickupSpawner pickupSpawner;
-
+    [SerializeField]
+    GameStateController gameStateController;
     private bool movePowerUp = true;
     private int power = 0;
 
@@ -45,6 +46,7 @@ public class LaunchController : MonoBehaviour {
             powerBar.SetActive(false);
             enemySpawner.StartSpawn();
             pickupSpawner.StartSpawn();
+            gameStateController.SetRoundEnd();
         }
     }
 
