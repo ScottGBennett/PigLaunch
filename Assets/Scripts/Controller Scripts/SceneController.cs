@@ -37,6 +37,11 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene("ShopMenu");
     }
 
+    public void LoadLearnToPlay()
+    {
+        SceneManager.LoadScene("LearnToplay");
+    }
+
     public void LoadOptionsMenu()
     {
         SceneManager.LoadScene("OptionsMenu");
