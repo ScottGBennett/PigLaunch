@@ -8,8 +8,9 @@ public class EnemySpawner : MonoBehaviour {
     GameObject enemyPrefab1, enemyPrefab2, enemy1Animation, enemy2Animation;
     [SerializeField]
     int numSpawns = 10;
+
     [SerializeField]
-    float spawnDelay = .1f;
+    float spawnDelay = 2f;
     bool shouldSpawn;
 
     Queue<GameObject> enemies;
@@ -33,15 +34,18 @@ public class EnemySpawner : MonoBehaviour {
             enemies.Enqueue(temp);
         }
 
+        shouldSpawn = false;
+        
+    }
+    
+    
+    public void StartSpawn()
+    {
         shouldSpawn = true;
         StartCoroutine("Spawn");
-    }
-    
-    
-    void Update ()
-    {
 
     }
+
 
     IEnumerator Spawn()
     {
@@ -51,7 +55,7 @@ public class EnemySpawner : MonoBehaviour {
             GameObject enemySpawn = enemies.Dequeue();
             enemySpawn.transform.position = transform.position;
             enemySpawn.SetActive(true);
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(Random.Range(0f, spawnDelay));
         }
         
         

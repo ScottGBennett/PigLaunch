@@ -16,11 +16,13 @@ public class GameStateController : MonoBehaviour
     HighScoreManager highScoreManager;
 
 
+
     public Text uiCoinsEarnedText, timeText, enemySquashText, sumScreenCoinsEarnedText;
 
     private int coinsEarned = 0, enemiesSquashed = 0;
     private float time;
     bool endRoundSceneDisplayed = false;
+    bool roundAbleToEnd = false;
     // Use this for initialization
     void Start ()
     {
@@ -30,10 +32,10 @@ public class GameStateController : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update ()
+    void FixedUpdate ()
     {
         
-        if (gameOver && !endRoundSceneDisplayed)
+        if (gameOver && !endRoundSceneDisplayed && roundAbleToEnd)
         {
             Time.timeScale = 0;
             summaryScreen.SetActive(true);
@@ -66,6 +68,16 @@ public class GameStateController : MonoBehaviour
         uiCoinsEarnedText.text = "Coins collected: " + coinsEarned;
     }
 
+    public void SetRoundEnd()
+    {
+        StartCoroutine("setRoundEnd");
+    }
+
+    IEnumerator setRoundEnd()
+    {
+        yield return new WaitForSeconds(1f);
+        roundAbleToEnd = true;
+    }
     //function to update the enemy squashed count
     public void incrementEnemyCount()
     {

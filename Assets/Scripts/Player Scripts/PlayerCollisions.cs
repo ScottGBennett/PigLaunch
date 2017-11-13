@@ -41,12 +41,6 @@ public class PlayerCollisions : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Background"))
         {
-            /*
-            if (currentBounces >= maxBounces)
-            {
-                playerRigidBody.velocity = Vector2.zero;
-            }*/
-
             Vector2 bounceVector = Vector2.up + Vector2.right;
             playerRigidBody.AddForce  (bounceVector * groundBounceForce, ForceMode2D.Impulse);
             currentBounces++;
@@ -57,7 +51,7 @@ public class PlayerCollisions : MonoBehaviour
             Vector2 bounceVector = Vector2.up + Vector2.right;
             playerRigidBody.AddForce (bounceVector * enemyBounceForce, ForceMode2D.Impulse);
             currentBounces = 0;
-			gameStateController.incrementEnemyCount ();
+            gameStateController.incrementEnemyCount ();
             audioController.PlayEnemy1Sound();
         }
     }
