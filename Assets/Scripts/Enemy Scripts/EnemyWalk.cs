@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemyWalk : MonoBehaviour
 {
     [SerializeField]
-    int speed = 1;
+    float maxSpeed = 10f;
 
+    float speed ;
 	public bool isAlive;
 
     Animator animator;
@@ -15,6 +16,7 @@ public class EnemyWalk : MonoBehaviour
     {
         isAlive = true;
         animator = GetComponentInChildren<Animator>();
+        speed = Random.Range(1f, maxSpeed);
         
     }
 
@@ -23,7 +25,8 @@ public class EnemyWalk : MonoBehaviour
 		isAlive = true;
         animator = GetComponentInChildren<Animator>();
         animator.Rebind();
-	}
+        speed = Random.Range(1f, maxSpeed);
+    }
     
     // Update is called once per frame
     void Update ()

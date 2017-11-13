@@ -13,6 +13,12 @@ public class LaunchController : MonoBehaviour {
     [HideInInspector]
     public bool launched = false;
 
+
+    [SerializeField]
+    EnemySpawner enemySpawner;
+    [SerializeField]
+    PickupSpawner pickupSpawner;
+
     private bool movePowerUp = true;
     private int power = 0;
 
@@ -37,6 +43,8 @@ public class LaunchController : MonoBehaviour {
             Debug.Log("Power: " + power);
             pig.Launch((float)power);
             powerBar.SetActive(false);
+            enemySpawner.StartSpawn();
+            pickupSpawner.StartSpawn();
         }
     }
 

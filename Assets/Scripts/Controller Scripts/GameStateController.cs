@@ -16,6 +16,7 @@ public class GameStateController : MonoBehaviour
     HighScoreManager highScoreManager;
 
 
+
     public Text uiCoinsEarnedText, timeText, enemySquashText, sumScreenCoinsEarnedText;
 
     private int coinsEarned = 0, enemiesSquashed = 0;

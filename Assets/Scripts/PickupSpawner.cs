@@ -30,14 +30,13 @@ public class PickupSpawner : MonoBehaviour
             coins.Enqueue(temp);
         }
 
+        shouldSpawn = false;
+    }
+    
+    public void StartSpawn()
+    {
         shouldSpawn = true;
         StartCoroutine("Spawn");
-    }
-
-
-    void Update()
-    {
-
     }
 
     IEnumerator Spawn()
