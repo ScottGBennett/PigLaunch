@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour {
 
     void Start ()
     {
+		
         enemies = new Queue<GameObject>();
         for (int i = 0; i < numSpawns; i++)
         {
@@ -52,9 +53,21 @@ public class EnemySpawner : MonoBehaviour {
        
         while (shouldSpawn && enemies.Count != 0)
         {
+			/*
             GameObject enemySpawn = enemies.Dequeue();
             enemySpawn.transform.position = transform.position;
-            enemySpawn.SetActive(true);
+            enemySpawn.SetActive(true); */
+			int randomNum = Random.Range (0, 2);
+			GameObject enemySpawn;
+			if (randomNum == 0) 
+			{
+				enemySpawn = Instantiate (enemyPrefab1);	
+			} 
+			else 
+			{
+				enemySpawn = Instantiate (enemyPrefab2);
+			}
+			enemySpawn.transform.position = transform.position;
             yield return new WaitForSeconds(Random.Range(0f, spawnDelay));
         }
         

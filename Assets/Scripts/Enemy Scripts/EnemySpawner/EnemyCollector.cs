@@ -18,8 +18,9 @@ public class EnemyCollector : MonoBehaviour {
     {
         if (collision.gameObject.tag == "enemy")
         {
-            enemySpawner.AddEnemy(collision.gameObject);
-            collision.gameObject.SetActive(false);
+            //enemySpawner.AddEnemy(collision.gameObject);
+            //collision.gameObject.SetActive(false);
+			Destroy(collision.gameObject);
         }
     }
 }
