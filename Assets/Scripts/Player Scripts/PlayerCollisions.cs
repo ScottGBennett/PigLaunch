@@ -51,7 +51,7 @@ public class PlayerCollisions : MonoBehaviour
             Vector2 bounceVector = Vector2.up + Vector2.right;
             playerRigidBody.AddForce (bounceVector * enemyBounceForce, ForceMode2D.Impulse);
             currentBounces = 0;
-			gameStateController.incrementEnemyCount ();
+            gameStateController.incrementEnemyCount ();
             audioController.PlayEnemy1Sound();
         }
     }
