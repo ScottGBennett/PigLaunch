@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Controller Scripts\HighScoreManager.cs" />
      <Compile Include="Assets\Scripts\Controller Scripts\HighScoreUIController.cs" />
      <Compile Include="Assets\Scripts\Controller Scripts\LaunchController.cs" />
+     <Compile Include="Assets\Scripts\Controller Scripts\LevelSelectController.cs" />
      <Compile Include="Assets\Scripts\Controller Scripts\OptionsUIController.cs" />
      <Compile Include="Assets\Scripts\Controller Scripts\SceneController.cs" />
      <Compile Include="Assets\Scripts\Controller Scripts\StoreUIController.cs" />
