@@ -12,7 +12,7 @@ public class PlayerCollisions : MonoBehaviour
     [SerializeField]
     int maxBounces = 2;
 
-    [SerializeField]
+    
     float groundBounceForce = 1f, enemyBounceForce = 1f;
 
     [SerializeField]
@@ -23,6 +23,9 @@ public class PlayerCollisions : MonoBehaviour
     StoreState storeState;
 
     GameStateController gameStateController;
+
+	[SerializeField]
+	PlayerController playerController;
 
     private void Start()
     {
@@ -45,6 +48,7 @@ public class PlayerCollisions : MonoBehaviour
             playerRigidBody.AddForce  (bounceVector * groundBounceForce, ForceMode2D.Impulse);
             currentBounces++;
             audioController.PlayGroundBounceSound();
+            gameStateController.onGround = true;
         }
         else if (collision.gameObject.CompareTag("enemy"))
         {
@@ -53,6 +57,15 @@ public class PlayerCollisions : MonoBehaviour
             currentBounces = 0;
             gameStateController.incrementEnemyCount ();
             audioController.PlayEnemy1Sound();
+			playerController.HitEnemy ();
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Background"))
+        {
+            gameStateController.onGround = false;
         }
     }
 
@@ -65,6 +78,5 @@ public class PlayerCollisions : MonoBehaviour
             audioController.PlayCoinSound();
         }
     }
-
 
 }
