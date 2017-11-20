@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public AudioController audioController;
 
     private int currentNumAttacks = 0;
+	private int remainingNumAttacks = 0;
     private SpringJoint2D spring;
     private Transform catapult;
     private Rigidbody2D rb2d;
@@ -26,7 +27,11 @@ public class PlayerController : MonoBehaviour
     private bool clickedOn;
     private Vector2 prevVelocity;
     private GameStateController gameStateController;
+	private int enemyHitCount = 0;
     StoreState storeState;
+
+	[SerializeField]
+	Text remainingAttacks;
 
     private void Start()
     {
@@ -44,11 +49,11 @@ public class PlayerController : MonoBehaviour
         storeState = JsonUtility.FromJson<StoreState>(storeStateString);
 
         maxNumAttacks = storeState.numAttacksLevel; //set the number of attacks
+		remainingAttacks.text = "Attacks Remaining: " + maxNumAttacks.ToString();
     }
 
     void Update () 
     {
-
         //If launch has happened, allow for pig attack
         if (gameController.launched && rb2d.velocity != Vector2.zero) 
         {
@@ -56,6 +61,7 @@ public class PlayerController : MonoBehaviour
             {
                 BasicAttack ();
                 currentNumAttacks++;
+				remainingAttacks.text = "Attacks Remaining: " + (maxNumAttacks - currentNumAttacks).ToString();
             }	
         }
 
@@ -86,11 +92,11 @@ public class PlayerController : MonoBehaviour
         }
 
         //check for gameover condition
-        if (rb2d.velocity == Vector2.zero && gameController.launched)
+        if (Mathf.Approximately(rb2d.velocity.x, 0f) && gameController.launched && gameStateController.onGround)
         {
             gameStateController.gameOver = true;
         }
-
+        
     }
 
     public void Launch(float f)
@@ -110,6 +116,8 @@ public class PlayerController : MonoBehaviour
         rb2d.gravityScale = 1f;
         rb2d.mass = 5;
         clickedOn = false;
+        gameStateController.startTimer = true;
+        gameStateController.onGround = false;
     }
 
     private void BasicAttack()
@@ -117,4 +125,22 @@ public class PlayerController : MonoBehaviour
         rb2d.AddForce (Vector2.down * attackForce, ForceMode2D.Impulse);
         audioController.PlayPigSound();
     }
+
+	public void HitEnemy()
+	{
+		enemyHitCount++;
+		if (enemyHitCount == 4) 
+		{
+			enemyHitCount = 0;
+			currentNumAttacks--;
+			if (currentNumAttacks < 0) 
+			{
+				currentNumAttacks = 0;
+			}
+			remainingAttacks.text = "Attacks Remaining: " + (maxNumAttacks - currentNumAttacks).ToString();
+
+		}
+
+	}
+
 }

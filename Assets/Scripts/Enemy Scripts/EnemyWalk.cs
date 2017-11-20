@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyWalk : MonoBehaviour
 {
     [SerializeField]
-    float maxSpeed = 10f;
+    public float maxSpeed = 5f;
 
     float speed ;
 	public bool isAlive;

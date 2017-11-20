@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour {
     int numSpawns = 10;
 
     [SerializeField]
-    float spawnDelay = 2f;
+    public float spawnDelay = 1.5f;
     bool shouldSpawn;
 
     Queue<GameObject> enemies;

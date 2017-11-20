@@ -8,6 +8,7 @@ public class GameStateController : MonoBehaviour
 {
     [HideInInspector]
     public bool gameOver;
+    public bool onGround = false;
 
     [SerializeField]
     GameObject summaryScreen;
@@ -23,6 +24,7 @@ public class GameStateController : MonoBehaviour
     private float time;
     bool endRoundSceneDisplayed = false;
     bool roundAbleToEnd = false;
+    public bool startTimer = false;
     // Use this for initialization
     void Start ()
     {
@@ -34,7 +36,6 @@ public class GameStateController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate ()
     {
-        
         if (gameOver && !endRoundSceneDisplayed && roundAbleToEnd)
         {
             Time.timeScale = 0;
@@ -86,12 +87,15 @@ public class GameStateController : MonoBehaviour
 
     private void timeUpdate()
     {
-        time += Time.deltaTime;
+        if (startTimer == true)
+        {
+            time += Time.deltaTime;
 
-        var minutes = Mathf.Floor(time / 59f);
-        var seconds = time % 59f;
-        var fraction = (time * 100f) % 100f;
+            var minutes = Mathf.Floor(time / 59f);
+            var seconds = time % 59f;
+            var fraction = (time * 100f) % 100f;
 
-        timeText.text = string.Format("Time Elapsed: {0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+            timeText.text = string.Format("Time Elapsed: {0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+        }
     }
 }
