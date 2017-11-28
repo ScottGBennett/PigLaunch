@@ -13,7 +13,7 @@ public class PlayerCollisions : MonoBehaviour
     int maxBounces = 2;
 
     
-    float groundBounceForce = 1f, enemyBounceForce = 1f;
+    float groundBounceForce = .5f, enemyBounceForce = 10f;
 
     [SerializeField]
     AudioController audioController;

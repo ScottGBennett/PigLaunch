@@ -52,7 +52,17 @@ public class EnemySpawner : MonoBehaviour {
        
         while (shouldSpawn && enemies.Count != 0)
         {
-            GameObject enemySpawn = enemies.Dequeue();
+            //GameObject enemySpawn = enemies.Dequeue();
+            GameObject enemySpawn;
+            int randomEnemy = Random.Range(0, 9);
+            if (randomEnemy < 5)
+            {
+                enemySpawn = Instantiate(enemyPrefab1);
+            }
+            else
+            {
+                enemySpawn = Instantiate(enemyPrefab2);
+            } 
             enemySpawn.transform.position = transform.position;
             enemySpawn.SetActive(true);
             yield return new WaitForSeconds(Random.Range(0f, spawnDelay));

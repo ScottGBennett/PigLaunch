@@ -35,8 +35,9 @@ public class CollideWithPlayer : MonoBehaviour
     IEnumerator FadeAfterDie()
     {
         yield return new WaitForSeconds(1f);
-        spawnerScript.AddEnemy(gameObject);
-        gameObject.SetActive(false);
+        //spawnerScript.AddEnemy(gameObject);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
         
     }
 
