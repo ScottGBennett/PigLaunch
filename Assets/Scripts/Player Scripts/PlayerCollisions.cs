@@ -27,6 +27,8 @@ public class PlayerCollisions : MonoBehaviour
 	[SerializeField]
 	PlayerController playerController;
 
+    EnemyWalk enemyWalk;
+
     private void Start()
     {
         gameStateController = GameObject.FindGameObjectWithTag("GameStateController").GetComponent<GameStateController>();
@@ -38,6 +40,7 @@ public class PlayerCollisions : MonoBehaviour
         //get values for ground bounce force, enemy bounce force, and number of attacks
         groundBounceForce *= storeState.groundForceLevel;
         enemyBounceForce *= storeState.enemyForceLevel;
+        enemyWalk = GetComponent<EnemyWalk>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -48,6 +51,7 @@ public class PlayerCollisions : MonoBehaviour
             playerRigidBody.AddForce  (bounceVector * groundBounceForce, ForceMode2D.Impulse);
             currentBounces++;
             audioController.PlayGroundBounceSound();
+            Debug.Log("Grounded!");
             gameStateController.onGround = true;
         }
         else if (collision.gameObject.CompareTag("enemy"))
@@ -55,8 +59,8 @@ public class PlayerCollisions : MonoBehaviour
             Vector2 bounceVector = Vector2.up + Vector2.right;
             playerRigidBody.AddForce (bounceVector * enemyBounceForce, ForceMode2D.Impulse);
             currentBounces = 0;
-            gameStateController.incrementEnemyCount ();
-            audioController.PlayEnemy1Sound();
+            //gameStateController.incrementEnemyCount();
+            //audioController.PlayEnemy1Sound();
 			playerController.HitEnemy ();
         }
     }
@@ -66,6 +70,7 @@ public class PlayerCollisions : MonoBehaviour
         if (collision.gameObject.CompareTag("Background"))
         {
             gameStateController.onGround = false;
+            Debug.Log("Ungrounded");
         }
     }
 
