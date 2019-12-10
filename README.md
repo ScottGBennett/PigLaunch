@@ -1,5 +1,4 @@
 # PigLaunch
-Capstone for CS 467
 
 To Launch: 
 Download PigLaunch.exe and the PigLaunch_Data folder. 
